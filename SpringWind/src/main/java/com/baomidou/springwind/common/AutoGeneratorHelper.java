@@ -51,8 +51,8 @@ public class AutoGeneratorHelper {
 		dsc.setTypeConvert(new MySqlTypeConvert());
 		dsc.setDriverName("com.mysql.jdbc.Driver");
 		dsc.setUsername("root");
-		dsc.setPassword("521");
-		dsc.setUrl("jdbc:mysql://127.0.0.1:3306/springwind?characterEncoding=utf8");
+		dsc.setPassword("666666");
+		dsc.setUrl("jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8");
 		mpg.setDataSource(dsc);
 
 		// 策略配置

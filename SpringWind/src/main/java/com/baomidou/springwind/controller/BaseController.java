@@ -11,8 +11,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.framework.controller.SuperController;
 import com.baomidou.framework.mail.MailHelper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.springwind.service.IPermissionService;
-import com.baomidou.springwind.service.IUserService;
 
 /**
  * <p>
@@ -27,15 +25,11 @@ public class BaseController extends SuperController implements HandlerIntercepto
 	@Autowired
 	protected MailHelper mailHelper;
 
-	@Autowired
-	protected IUserService userService;
-
-	@Autowired
-	private IPermissionService permissionService;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		this.logger.info("处理对象：" + handler.getClass().toString());
 		return true;
 	}
 
@@ -44,10 +38,13 @@ public class BaseController extends SuperController implements HandlerIntercepto
 			ModelAndView modelAndView) throws Exception {
 		/*
 		 * 方法调用后调用该方法，返回数据给请求页
+		 * ###给导航页填充选项###
 		 */
 		if (isLegalView(modelAndView)) {
-			modelAndView.addObject("currentUser", userService.selectById(getCurrentUserId()));
-			modelAndView.addObject("menuList", permissionService.selectMenuVOByUserId(getCurrentUserId()));
+
+//			modelAndView.addObject("currentUser", userService.selectById(getCurrentUserId()));
+//			System.out.println(userService.selectById(getCurrentUserId()));
+//			modelAndView.addObject("menuList", permissionService.selectMenuVOByUserId(getCurrentUserId()));
 		}
 	}
 
